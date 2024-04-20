@@ -6,7 +6,7 @@
 /*   By: ade-sous <ade-sous@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/10 22:51:28 by vlopes            #+#    #+#             */
-/*   Updated: 2024/04/06 18:09:12 by ade-sous         ###   ########.fr       */
+/*   Updated: 2024/04/18 15:39:48 by ade-sous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,9 +84,11 @@ static char	*rec_function(int fd, char *rec)
 		if (!rec)
 		{
 			rec = malloc(1 * sizeof(char));
-			*rec = 0;
+			*rec = '\0';
 		}
-		rec = ft_strjoin(rec, util);
+		char *temp = ft_strjoin(rec, util);
+		free(rec);
+		rec = temp;
 	}
 	free(util);
 	return (rec);
