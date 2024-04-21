@@ -9,7 +9,7 @@ GNL_DIR = srcs/get_next_line
 
 
 CC    = cc
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror -g
 
 MLX        = ./minilibx-linux
 FLAGS    = $(CFLAGS) -L $(MLX) -lmlx_Linux -L/usr/lib -Imlx_linux -lXext -lX11 -lm -lz

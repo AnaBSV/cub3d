@@ -6,11 +6,11 @@
 /*   By: ade-sous <ade-sous@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 15:19:16 by vlopes            #+#    #+#             */
-/*   Updated: 2024/04/06 18:01:04 by ade-sous         ###   ########.fr       */
+/*   Updated: 2024/04/20 21:50:30 by ade-sous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/libft.h"
+#include "../../includes/cub3d.h"
 
 char	*ft_strdup(const char *s1)
 {

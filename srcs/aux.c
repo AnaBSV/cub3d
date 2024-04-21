@@ -6,7 +6,7 @@
 /*   By: ade-sous <ade-sous@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/18 16:47:10 by ade-sous          #+#    #+#             */
-/*   Updated: 2024/04/18 17:07:38 by ade-sous         ###   ########.fr       */
+/*   Updated: 2024/04/20 15:50:31 by ade-sous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,22 @@ int count_char(char *str, char c)
     i++;
   }
   return (count);
+}
+
+int is_empty_line(char *str)
+{
+  int i;
+
+  i = 0;
+
+  while(str[i] == ' ')
+    i++;
+  if(str[i] == '\n')
+    i++;
+  if(str[i] == '\0')
+    return(0);
+  else
+    return(1);
 }
 
 void exit_cub(char *str, t_data *data)

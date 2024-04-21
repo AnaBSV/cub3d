@@ -6,7 +6,7 @@
 /*   By: ade-sous <ade-sous@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/18 14:59:37 by ade-sous          #+#    #+#             */
-/*   Updated: 2024/04/18 16:38:45 by ade-sous         ###   ########.fr       */
+/*   Updated: 2024/04/20 18:34:20 by ade-sous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,10 @@ void free_map(t_map *map)
 	  free(map->we);
   if (map->ea)
 	  free(map->ea);
+  if (map->f_str)
+    free(map->f_str);
+  if (map->c_str)
+    free(map->c_str);
   if (map->f)
     free(map->f);
   if (map->c)

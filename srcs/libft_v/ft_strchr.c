@@ -1,31 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.h                                    :+:      :+:    :+:   */
+/*   ft_strchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ade-sous <ade-sous@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/08/15 23:21:49 by ade-sous          #+#    #+#             */
-/*   Updated: 2024/04/20 21:50:10 by ade-sous         ###   ########.fr       */
+/*   Created: 2024/04/20 21:35:57 by ade-sous          #+#    #+#             */
+/*   Updated: 2024/04/20 21:36:20 by ade-sous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GET_NEXT_LINE_H
-# define GET_NEXT_LINE_H
+#include "../../includes/libft.h"
 
-# include <stdlib.h>
-# include <unistd.h>
+char	*ft_strchr(char *s, int c)
+{
+	char	*str;
 
-#include "./libft.h"
-
-#ifndef BUFFER_SIZE
-    #define BUFFER_SIZE 2
-#endif
-
-char	*get_next_line(int fd);
-size_t	ft_strlen(const char *s);
-// size_t	ft_strlen(char *s);
-// char	*ft_strjoin(char *s1, char *s2);
-// char	*ft_strchr(char *s, int c);
-
-#endif
+	str = (char *)s;
+	while (*str != c)
+	{
+		if (*str == '\0')
+		{
+			return (NULL);
+		}
+		str++;
+	}
+	return (str);
+}

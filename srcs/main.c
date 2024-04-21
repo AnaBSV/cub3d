@@ -6,7 +6,7 @@
 /*   By: ade-sous <ade-sous@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/06 15:34:45 by ade-sous          #+#    #+#             */
-/*   Updated: 2024/04/18 17:18:54 by ade-sous         ###   ########.fr       */
+/*   Updated: 2024/04/20 20:31:07 by ade-sous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,15 +17,19 @@ void print_map_struct(t_map *map)
 	printf("Begin Line: %d\n", map->map_begin_line);
 	printf("Total Lines: %d\n", map->total_lines);
 	printf("Width: %d\n", map->width);
+	printf("\n");
 	
-	printf("NO: %s\n", map->no);
-	printf("SO: %s\n", map->so);
-	printf("WE: %s\n", map->we);
-	printf("EA: %s\n", map->ea);
+	printf("NO: %s", map->no);
+	printf("SO: %s", map->so);
+	printf("WE: %s", map->we);
+	printf("EA: %s", map->ea);
+	printf("\n");
 
-
-	printf("F: %d  %d  %d\n", map->f[0], map->f[1], map->f[2]);
-	printf("C: %d  %d  %d\n", map->c[0], map->c[1], map->c[2]);
+	printf("F_str: %s", map->f_str);
+	printf("C_str: %s", map->c_str);
+	
+	//printf("F: %d  %d  %d\n", map->f[0], map->f[1], map->f[2]);
+	//printf("C: %d  %d  %d\n", map->c[0], map->c[1], map->c[2]);
 	
 }
 
@@ -58,7 +62,8 @@ void	init(t_data *data)
 	data->map->we = NULL;
 	data->map->f = NULL;
 	data->map->c = NULL;
-
+	data->map->f_str = NULL;
+	data->map->c_str = NULL;
 }
 
 int	main(int argc, char **argv)
@@ -77,7 +82,8 @@ int	main(int argc, char **argv)
 	
 	init(&data);
 	
-	read_map(argv[1], &data);
+	read_map_configs(argv[1], &data);
+	//get_map(argv[1], &data);
 	print_map_struct(data.map);
 	free_map(data.map);
 	//windows_builder(&data);

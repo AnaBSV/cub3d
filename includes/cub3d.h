@@ -6,7 +6,7 @@
 /*   By: ade-sous <ade-sous@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/06 15:34:42 by ade-sous          #+#    #+#             */
-/*   Updated: 2024/04/18 16:56:52 by ade-sous         ###   ########.fr       */
+/*   Updated: 2024/04/20 20:31:02 by ade-sous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,9 @@ typedef struct	s_map {
 	char		*we;
 	char		*ea;
 
+	char		*f_str;
+	char		*c_str;
+	
 	int			*f;
 	int			*c;
 
@@ -60,13 +63,14 @@ typedef struct	s_data {
 void	windows_builder(t_data *data);
 int		close_window(int code, t_data *data);
 
-int		read_map(char *filename, t_data *data);
+int		read_map_configs(char *filename, t_data *data);
 
-void  free_array(char **arr);
-void free_map(t_map *map);
+void	free_array(char **arr);
+void	free_map(t_map *map);
 
 
-int count_char(char *str, char c);
-void exit_cub(char *str, t_data *data);
+int		count_char(char *str, char c);
+void	exit_cub(char *str, t_data *data);
+int		is_empty_line(char *str);
 
 #endif

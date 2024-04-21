@@ -11,7 +11,7 @@ int array_len(char **arr)
 }
 
 
-int	*get_color_info(char *line, char c, t_data *data, char **infos)
+int	*get_color_info(char *line, char c, t_data *data)
 {
 	char				*ptr;
 	int					*colors;
@@ -19,29 +19,22 @@ int	*get_color_info(char *line, char c, t_data *data, char **infos)
 
 	ptr = ft_strchr(line, c);
 	if (!ptr || count_char(line, ',') != 2)
-	{
-		free(line);
-		free_array(infos);
 		exit_cub("Invalid Color Info 1\n", data);
-	}
 
 	colors = malloc(sizeof(int) * 3);
-
-	if (ptr)
-		ptr++;
+	ptr++;
 
 	while (ptr && *ptr == ' ')
-    ptr++;
+    	ptr++;
 	
 	i = 0;
-	while (ptr && *ptr != '\0')
+	while (ptr && *ptr != '\0' && i < 3)
 	{
 		colors[i] = ft_atoi(ptr);
 
 		if (colors[i] < 0 || colors[i] >= 255)
 		{
 			free(line);
-			free_array(infos);
 			exit_cub("Invalid Color Info\n", data);
 		}
 		
@@ -50,7 +43,7 @@ int	*get_color_info(char *line, char c, t_data *data, char **infos)
 			break;
 		ptr++;
 		while (ptr && *ptr == ' ')
-    	ptr++;
+    		ptr++;
 		
 		i++;
 	}
@@ -68,6 +61,7 @@ int check_config_line(char *line, t_data *data, int total_configs)
 		free_array(infos);
 		return (1);
 	}
+	//printf("infos[0]: %s\n", infos[0]);
 	
 	if (ft_strcmp(infos[0], "NO\0") == 0)
 		data->map->no = ft_strdup(infos[1]);
@@ -78,9 +72,9 @@ int check_config_line(char *line, t_data *data, int total_configs)
 	else if (ft_strcmp(infos[0], "EA\0") == 0)
 		data->map->ea = ft_strdup(infos[1]);
 	else if (ft_strcmp(infos[0], "F\0") == 0)
-		data->map->f = get_color_info(line, 'F', data, infos);
+		data->map->f_str = ft_strdup(line);//get_color_info(line, 'F', data, infos);
 	else if (ft_strcmp(infos[0], "C\0") == 0)
-		data->map->c = get_color_info(line, 'C', data, infos);
+		data->map->c_str = ft_strdup(line);//get_color_info(line, 'C', data, infos);
 	else
 	{
 		free_array(infos);
@@ -92,7 +86,7 @@ int check_config_line(char *line, t_data *data, int total_configs)
 	return(0);
 }
 
-int	read_map(char *filename, t_data *data)
+int	read_map_configs(char *filename, t_data *data)
 {
 	int		is_config_line;
 	int		fd;
@@ -103,8 +97,7 @@ int	read_map(char *filename, t_data *data)
 	fd = open(filename, O_RDONLY);
 	if (fd == -1)
 	{
-		printf("Failed to open and read file.\n");
-		exit(1);
+		exit_cub("Failed to open and read file.\n", data);
 	}
 
 	total_configs = 0;
@@ -116,7 +109,7 @@ int	read_map(char *filename, t_data *data)
 		if (!line)
 			break ;
 
-		if (!ft_strcmp(line, "\n"))
+		else if (!is_empty_line(line) || total_configs < 0)
 		{
 			i++;
 			free(line);
@@ -135,11 +128,20 @@ int	read_map(char *filename, t_data *data)
 		is_config_line = check_config_line(line, data, total_configs);
 		if (total_configs <= 5 && !is_config_line)
 			total_configs++;
-		i++;
+		else if(total_configs <= 5 && is_config_line)
+		{
+			free(line);
+			exit_cub("Erro nas Configurações\n", data);
+		}
 		free(line);
+		i++;
 	}
 
+	close(fd);
 	if (total_configs != 6)
-		exit_cub("Wrong Map\n", data);
+		exit_cub("Erro nas Configurações\n", data);
+
+	data->map->c = get_color_info(data->map->c_str, 'C', data);
+	data->map->f = get_color_info(data->map->f_str, 'F', data);
 	return (0);
 }
