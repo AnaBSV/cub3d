@@ -12,39 +12,39 @@
 
 #include "../../includes/libft.h"
 
-char	*ft_strchr(char *s, int c)
-{
-	int	i;
+// char	*ft_strchr(char *s, int c)
+// {
+// 	int	i;
 
-	i = 0;
-	if (!s)
-	{
-		free(s);
-		return (0);
-	}
-	while (s[i] != 0)
-	{
-		if (s[i] == (unsigned char)c)
-			return (s + i);
-		i++;
-	}
-	if ((unsigned char)c == 0)
-		return (s + i);
-	return (0);
-}
+// 	i = 0;
+// 	if (!s)
+// 	{
+// 		free(s);
+// 		return (0);
+// 	}
+// 	while (s[i] != 0)
+// 	{
+// 		if (s[i] == (unsigned char)c)
+// 			return (s + i);
+// 		i++;
+// 	}
+// 	if ((unsigned char)c == 0)
+// 		return (s + i);
+// 	return (0);
+// }
 
-size_t	ft_strlen(const char *s)
-{
-	int	i;
+// size_t	ft_strlen(const char *s)
+// {
+// 	int	i;
 
-	i = 0;
-	while (*s != 0)
-	{
-		s++;
-		i++;
-	}
-	return (i);
-}
+// 	i = 0;
+// 	while (*s != 0)
+// 	{
+// 		s++;
+// 		i++;
+// 	}
+// 	return (i);
+// }
 
 char	*ft_to_name(char *name, char *s1, char *s2)
 {	

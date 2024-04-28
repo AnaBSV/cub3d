@@ -33,10 +33,7 @@ int	*get_color_info(char *line, char c, t_data *data)
 		colors[i] = ft_atoi(ptr);
 
 		if (colors[i] < 0 || colors[i] >= 255)
-		{
-			free(line);
 			exit_cub("Invalid Color Info\n", data);
-		}
 		
 		ptr = ft_strchr(ptr, ',');
 		if (ptr == NULL)
@@ -108,7 +105,6 @@ int	read_map_configs(char *filename, t_data *data)
 
 		if (!line)
 			break ;
-
 		else if (!is_empty_line(line) || total_configs < 0)
 		{
 			i++;
@@ -120,7 +116,7 @@ int	read_map_configs(char *filename, t_data *data)
 		{
 			if (data->map->map_begin_line == -1)
 				data->map->map_begin_line = i;
-			if ((int)ft_strlen(line) > data->map->width)
+			if (ft_strlen(line) > (data->map->width))
 				data->map->width = ft_strlen(line);
 			data->map->total_lines++;
 		}

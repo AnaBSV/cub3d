@@ -43,4 +43,6 @@ void free_map(t_map *map)
     free(map->f);
   if (map->c)
 	  free(map->c);
+  if (map->map)
+    free_array(map->map);
 }

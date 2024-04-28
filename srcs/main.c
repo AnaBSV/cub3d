@@ -14,6 +14,9 @@
 
 void print_map_struct(t_map *map)
 {
+	int	i;
+
+	i = 0;
 	printf("Begin Line: %d\n", map->map_begin_line);
 	printf("Total Lines: %d\n", map->total_lines);
 	printf("Width: %d\n", map->width);
@@ -28,9 +31,15 @@ void print_map_struct(t_map *map)
 	printf("F_str: %s", map->f_str);
 	printf("C_str: %s", map->c_str);
 	
-	//printf("F: %d  %d  %d\n", map->f[0], map->f[1], map->f[2]);
-	//printf("C: %d  %d  %d\n", map->c[0], map->c[1], map->c[2]);
-	
+	printf("F: %d|%d|%d\n", map->f[0], map->f[1], map->f[2]);
+	printf("C: %d|%d|%d\n", map->c[0], map->c[1], map->c[2]);
+	printf("\n");
+
+	while (map->map[i])
+	{
+		printf("%s", map->map[i]);
+		i++;
+	}
 }
 
 void print_data_struct(t_data *data)
@@ -81,13 +90,14 @@ int	main(int argc, char **argv)
 	}
 	
 	init(&data);
+	(void)argv;
 	
 	read_map_configs(argv[1], &data);
-	//get_map(argv[1], &data);
-	print_map_struct(data.map);
+	get_map(argv[1], &data);
+	//print_map_struct(data.map);
 	free_map(data.map);
-	//windows_builder(&data);
-	//mlx_hook(data.win, 17, 0, close_window, &data);
-	//mlx_loop(data.mlx);
+	// windows_builder(&data);
+	// mlx_hook(data.win, 17, 0, close_window, &data);
+	// mlx_loop(data.mlx);
 	return (0);
 }

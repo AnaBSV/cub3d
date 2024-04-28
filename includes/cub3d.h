@@ -64,6 +64,7 @@ void	windows_builder(t_data *data);
 int		close_window(int code, t_data *data);
 
 int		read_map_configs(char *filename, t_data *data);
+int		get_map(char *filename, t_data *data);
 
 void	free_array(char **arr);
 void	free_map(t_map *map);

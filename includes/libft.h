@@ -28,5 +28,6 @@ void	*ft_realloc(void *ptr, size_t size);
 int		ft_stristr(const char *haystack, const char *needle, size_t len);
 char	*ft_itoa(int n);
 int	    ft_isdigit(int c);
+int     ft_strlen(const char *s);
 
 #endif

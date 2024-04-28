@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ade-sous <ade-sous@student.42.rio>         +#+  +:+       +#+        */
+/*   By: vlopes < vlopes@student.42.rio>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/10 22:51:28 by vlopes            #+#    #+#             */
-/*   Updated: 2024/04/20 21:49:23 by ade-sous         ###   ########.fr       */
+/*   Updated: 2022/06/21 15:35:29 by vlopes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/get_next_line.h"
+#include "get_next_line.h"
 
 static char	*ft_fuction(char *rec)
 {
@@ -67,6 +67,7 @@ static char	*rec_function(int fd, char *rec)
 {
 	char	*util;
 	int		i;
+	char	*tmp;
 
 	i = 1;
 	util = malloc((BUFFER_SIZE + 1) * sizeof(char));
@@ -84,11 +85,11 @@ static char	*rec_function(int fd, char *rec)
 		if (!rec)
 		{
 			rec = malloc(1 * sizeof(char));
-			*rec = '\0';
+			*rec = 0;
 		}
-		char *temp = ft_strjoin(rec, util);
-		free(rec);
-		rec = temp;
+		tmp = rec;
+		rec = ft_strjoin(rec, util);
+		free(tmp);
 	}
 	free(util);
 	return (rec);
