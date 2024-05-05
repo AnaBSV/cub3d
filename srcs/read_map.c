@@ -127,7 +127,7 @@ int	read_map_configs(char *filename, t_data *data)
 		else if(total_configs <= 5 && is_config_line)
 		{
 			free(line);
-			exit_cub("Erro nas Configurações\n", data);
+			exit_cub("Erro nas Configurações A\n", data);
 		}
 		free(line);
 		i++;
@@ -135,7 +135,7 @@ int	read_map_configs(char *filename, t_data *data)
 
 	close(fd);
 	if (total_configs != 6)
-		exit_cub("Erro nas Configurações\n", data);
+		exit_cub("Erro nas Configurações B\n", data);
 
 	data->map->c = get_color_info(data->map->c_str, 'C', data);
 	data->map->f = get_color_info(data->map->f_str, 'F', data);

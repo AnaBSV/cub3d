@@ -7,7 +7,7 @@
 
 char	*get_next_line(int fd);
 char	*ft_strjoin_gnl(char *s1, char *s2);
-char	*ft_strjoin(char const *s1, char const *s2);
+char	*ft_strjoin(char *s1, char *s2);
 char	*ft_substr(const char *s, unsigned int start, size_t len);
 size_t	ft_strlcpy(char *dst, char *src, size_t dstsize);
 char	*ft_strchr(char *s, int c);

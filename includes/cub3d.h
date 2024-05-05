@@ -6,7 +6,7 @@
 /*   By: ade-sous <ade-sous@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/06 15:34:42 by ade-sous          #+#    #+#             */
-/*   Updated: 2024/04/20 20:31:02 by ade-sous         ###   ########.fr       */
+/*   Updated: 2024/05/04 19:31:46 by ade-sous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,5 +73,8 @@ void	free_map(t_map *map);
 int		count_char(char *str, char c);
 void	exit_cub(char *str, t_data *data);
 int		is_empty_line(char *str);
+
+int		valid_wall(char **map, t_data *data);
+
 
 #endif

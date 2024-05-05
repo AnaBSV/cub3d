@@ -9,15 +9,11 @@ int	get_map(char *filename, t_data *data)
 
 	fd = open(filename, O_RDONLY);
 	if (fd == -1)
-	{
 		exit_cub("Failed to open and read file.\n", data);
-	}
-
-    data->map->map = malloc(sizeof(char *) * data->map->total_lines);
-	while (1)
+    data->map->map = malloc(sizeof(char *) * (data->map->total_lines) + 1);
+	while (map_index < data->map->total_lines)
 	{
 		line = get_next_line(fd);
-    
 		if (!line)
 			break ;
         if (i < data->map->map_begin_line)
@@ -26,12 +22,11 @@ int	get_map(char *filename, t_data *data)
             free(line);
             continue;
         }
-        //printf("%s", line);
         data->map->map[map_index] = ft_strdup(line);
         free(line);
         map_index++;
         i++;
 	}
-
+    data->map->map[map_index] = '\0';
 	return (0);
 }

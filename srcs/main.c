@@ -6,7 +6,7 @@
 /*   By: ade-sous <ade-sous@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/06 15:34:45 by ade-sous          #+#    #+#             */
-/*   Updated: 2024/04/20 20:31:07 by ade-sous         ###   ########.fr       */
+/*   Updated: 2024/05/04 19:56:03 by ade-sous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,12 +73,14 @@ void	init(t_data *data)
 	data->map->c = NULL;
 	data->map->f_str = NULL;
 	data->map->c_str = NULL;
+	data->map->map = NULL;
 }
+	
 
 int	main(int argc, char **argv)
 {
 	t_data	data;
-	t_map		map_infos;
+	t_map	map_infos;
 
 	data.map = &map_infos;
 
@@ -94,7 +96,8 @@ int	main(int argc, char **argv)
 	
 	read_map_configs(argv[1], &data);
 	get_map(argv[1], &data);
-	//print_map_struct(data.map);
+	print_map_struct(data.map);
+	valid_wall(data.map->map, &data);
 	free_map(data.map);
 	// windows_builder(&data);
 	// mlx_hook(data.win, 17, 0, close_window, &data);

@@ -6,7 +6,7 @@
 /*   By: ade-sous <ade-sous@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/15 23:21:49 by ade-sous          #+#    #+#             */
-/*   Updated: 2024/04/20 21:50:10 by ade-sous         ###   ########.fr       */
+/*   Updated: 2024/05/04 16:11:24 by ade-sous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,9 @@
 #endif
 
 char	*get_next_line(int fd);
-// size_t	ft_strlen(char *s);
-// char	*ft_strjoin(char *s1, char *s2);
-// char	*ft_strchr(char *s, int c);
+//char	*ft_strjoin(char *s1, char *s2);
+int		endof_line(char *backup);
+char	*generate_of_eof(const char *backup);
+char	*ft_strdup(const char *s);
 
 #endif

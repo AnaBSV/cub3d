@@ -3,109 +3,111 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vlopes < vlopes@student.42.rio>            +#+  +:+       +#+        */
+/*   By: ade-sous <ade-sous@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/10 22:51:28 by vlopes            #+#    #+#             */
-/*   Updated: 2022/06/21 15:35:29 by vlopes           ###   ########.fr       */
+/*   Updated: 2024/05/04 16:17:27 by ade-sous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "../../includes/get_next_line.h"
 
-static char	*ft_fuction(char *rec)
+char	*save_and_clear(char *backup)
 {
-	char	*other;
 	int		i;
+	char	*new_backup;
 
 	i = 0;
-	if (!rec[i])
-		return (0);
-	while (rec[i] && rec[i] != 10)
+	while (backup[i] != '\n' && backup[i])
 		i++;
-	other = malloc((i + 2) * sizeof(char));
-	if (!other)
-		return (0);
-	i = 0;
-	while (rec[i] && rec[i] != 10)
+	if (backup[i] == '\0')
 	{
-		other[i] = rec[i];
-		i++;
+		free(backup);
+		return (NULL);
 	}
-	if (rec[i] == 10)
-		other[i++] = 10;
-	other[i] = 0;
-	return (other);
+	if (backup[i] == '\n')
+		i++;
+	new_backup = ft_strdup(&backup[i]);
+	free(backup);
+	return (new_backup);
 }
 
-static char	*ft_cut(char *rec)
+char	*generate_of_eof(const char *backup)
 {
-	char	*cut;
-	int		i;
-	int		m;
+	char	*line;
+	int		len;
 
-	i = 0;
-	while (rec[i] != 10 && rec[i])
-		i++;
-	if (!rec[i])
+	len = -1;
+	while (backup[++len])
 	{
-		free(rec);
-		return (0);
+		if (backup[len] == '\n')
+			break ;
 	}
-	m = 0;
-	cut = malloc((ft_strlen(rec) - i + 1) * sizeof(char));
-	if (!cut)
-		return (0);
-	i++;
-	while (rec[i])
-		cut[m++] = rec[i++];
-	cut[m] = 0;
-	free(rec);
-	return (cut);
+	line = malloc(sizeof(char) * (len + 2));
+	return (line);
 }
 
-static char	*rec_function(int fd, char *rec)
+char	*extract_line(char *backup)
 {
-	char	*util;
 	int		i;
-	char	*tmp;
+	char	*line;
 
-	i = 1;
-	util = malloc((BUFFER_SIZE + 1) * sizeof(char));
-	if (!util)
-		return (0);
-	while (!ft_strchr(rec, 10) && i != 0)
+	i = 0;
+	if (!backup[i])
+		return (NULL);
+	line = generate_of_eof(backup);
+	if (!line)
+		return (NULL);
+	while (backup[i] && backup[i] != '\n')
 	{
-		i = read(fd, util, BUFFER_SIZE);
-		if (i < 0)
-		{
-			free(util);
-			return (0);
-		}
-		util[i] = 0;
-		if (!rec)
-		{
-			rec = malloc(1 * sizeof(char));
-			*rec = 0;
-		}
-		tmp = rec;
-		rec = ft_strjoin(rec, util);
-		free(tmp);
+		line[i] = backup[i];
+		i++;
 	}
-	free(util);
-	return (rec);
+	if (backup[i] == '\n')
+	{
+		line[i] = backup[i];
+		i++;
+	}
+	line[i] = '\0';
+	return (line);
+}
+
+char	*read_and_add(char *backup, int bytes_read, int fd)
+{
+	char	*buf;
+
+	buf = malloc(sizeof(char) * (BUFFER_SIZE + 1));
+	if (!buf)
+		return (NULL);
+	while (!endof_line(backup) && bytes_read)
+	{
+		bytes_read = read(fd, buf, BUFFER_SIZE);
+		if (bytes_read == -1)
+		{
+			free(buf);
+			return (NULL);
+		}
+		buf[bytes_read] = '\0';
+		backup = ft_strjoin(backup, buf);
+	}
+	free(buf);
+	return (backup);
 }
 
 char	*get_next_line(int fd)
 {
-	static char	*rec;
-	char		*other;
+	static char	*backup;
+	char		*str;
+	int			bytes_read;
 
-	if (BUFFER_SIZE < 1 || fd < 0)
-		return (0);
-	rec = rec_function(fd, rec);
-	if (!rec)
-		return (0);
-	other = ft_fuction(rec);
-	rec = ft_cut(rec);
-	return (other);
+	bytes_read = 1;
+	str = NULL;
+	if (fd < 0 || BUFFER_SIZE <= 0)
+		return (NULL);
+	backup = read_and_add(backup, bytes_read, fd);
+	if (!backup)
+		return (NULL);
+	str = extract_line(backup);
+	backup = save_and_clear(backup);
+	return (str);
 }

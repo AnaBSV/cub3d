@@ -6,7 +6,7 @@
 /*   By: ade-sous <ade-sous@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/18 14:59:37 by ade-sous          #+#    #+#             */
-/*   Updated: 2024/04/20 18:34:20 by ade-sous         ###   ########.fr       */
+/*   Updated: 2024/05/04 16:38:34 by ade-sous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,11 @@ void  free_array(char **arr)
   int i;
 
   i = 0;
-  while (arr[i])
+  //printf("array: %s\n", arr ? "sim" : "não");
+  while (arr && arr[i])
   {
+   // printf("array[%d]: %s\n", i, arr[i] ? "sim" : "não");
+    //printf("%s\n", arr[i]);
     free(arr[i]);
     i++;
   }
@@ -27,6 +30,7 @@ void  free_array(char **arr)
 
 void free_map(t_map *map)
 {
+  //printf("A\n");
   if (map->no)
 	  free(map->no);
   if (map->so)
@@ -43,6 +47,8 @@ void free_map(t_map *map)
     free(map->f);
   if (map->c)
 	  free(map->c);
-  if (map->map)
+  if (map && map->map)
     free_array(map->map);
+  //printf("Z\n");
+  
 }
