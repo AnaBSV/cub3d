@@ -30,3 +30,34 @@ int	get_map(char *filename, t_data *data)
     data->map->map[map_index] = '\0';
 	return (0);
 }
+
+void	check_map(char **map, t_data *data)
+{
+	int	i;
+	int	j;
+	int player;
+
+	i = 0;
+	player = 0;
+	while (map[i])
+	{
+		j = 0;
+		while (map[i][j])
+		{
+			if (map[i][j] == '0' || map[i][j] == '1' || map[i][j] == ' ' || map[i][j] == '\n')
+				j++;
+			else if (map[i][j] == 'N' || map[i][j] == 'S' || map[i][j] == 'W' || map[i][j] == 'E')
+			{
+				player++;
+				j++;
+			}
+			else{
+				printf("map[%d][%d]: %c\n", i, j, map[i][j]);
+				exit_cub("Invalid map: unknown char\n", data);
+			}
+		}
+		i++;
+	}
+	if (player != 1)
+		exit_cub("Invalid map: Just one player is accepted\n", data);
+}

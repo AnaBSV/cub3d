@@ -150,7 +150,13 @@ int valid_wall(char **map, t_data *data)
         continue;
     }
    //printf("TESTE: %d\n", check_around_point(map_copy, '0'));
-    if (check_around_point(map_copy, '0') == 1)
+    if (check_around_point(map_copy, '0') || check_around_point(map_copy, 'N') 
+        || check_around_point(map_copy, 'S') || check_around_point(map_copy, 'W')
+            || check_around_point(map_copy, 'E')) 
+    {
+        free_array(map_copy);
         exit_cub("Error: Map must be closed/surrounded by walls.\n", data);
+    }
+    free_array(map_copy);
     return (0);
 }

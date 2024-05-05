@@ -23,8 +23,9 @@
 #include <stdio.h> //remove
 #include <unistd.h>
 
-# define WIDTH 1000
-# define HEIGHT 800
+# define WIDTH 1900
+# define HEIGHT 1000
+# define TEXT 4
 
 typedef struct	s_map {
 	char		*no;
@@ -65,6 +66,7 @@ int		close_window(int code, t_data *data);
 
 int		read_map_configs(char *filename, t_data *data);
 int		get_map(char *filename, t_data *data);
+void	check_map(char **map, t_data *data);
 
 void	free_array(char **arr);
 void	free_map(t_map *map);

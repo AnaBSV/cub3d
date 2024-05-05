@@ -96,11 +96,12 @@ int	main(int argc, char **argv)
 	
 	read_map_configs(argv[1], &data);
 	get_map(argv[1], &data);
+	check_map(data.map->map, &data);
 	print_map_struct(data.map);
 	valid_wall(data.map->map, &data);
 	free_map(data.map);
-	// windows_builder(&data);
-	// mlx_hook(data.win, 17, 0, close_window, &data);
-	// mlx_loop(data.mlx);
+	windows_builder(&data);
+	mlx_hook(data.win, 17, 0, close_window, &data);
+	mlx_loop(data.mlx);
 	return (0);
 }
