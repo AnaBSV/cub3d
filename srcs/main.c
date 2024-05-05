@@ -56,27 +56,6 @@ void	windows_builder(t_data *data)
 			&data->line_length, &data->endian);
 }
 
-
-
-void	init(t_data *data)
-{
-	data->name = "Cub3d";
-	data->map->map_begin_line = -1;
-	data->map->total_lines = 0;
-	data->map->width = 0;
-	
-	data->map->no = NULL;
-	data->map->so = NULL;
-	data->map->ea = NULL;
-	data->map->we = NULL;
-	data->map->f = NULL;
-	data->map->c = NULL;
-	data->map->f_str = NULL;
-	data->map->c_str = NULL;
-	data->map->map = NULL;
-}
-	
-
 int	main(int argc, char **argv)
 {
 	t_data	data;
@@ -101,6 +80,7 @@ int	main(int argc, char **argv)
 	valid_wall(data.map->map, &data);
 	free_map(data.map);
 	windows_builder(&data);
+	init_player(&data);
 	mlx_hook(data.win, 17, 0, close_window, &data);
 	mlx_loop(data.mlx);
 	return (0);

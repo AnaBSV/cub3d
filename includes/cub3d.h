@@ -26,6 +26,11 @@
 # define WIDTH 1900
 # define HEIGHT 1000
 # define TEXT 4
+# define TILE 30
+# define ROTATION_SPEED 0.045
+# define FOV 60
+# define PLAYER_SPEED 4
+# define BLUE 0x0000ff 
 
 typedef struct	s_map {
 	char		*no;
@@ -44,7 +49,18 @@ typedef struct	s_map {
 	int 		map_begin_line;
 	int			total_lines;
 	int			width;
+
+	int			py;
+	int			px;
 	
+	int			dirx;
+	int			diry;
+
+	double		plany;
+	double		planx;
+
+	double		old_time;
+	double		time;
 }	t_map;
 
 typedef struct	s_data {
@@ -60,6 +76,13 @@ typedef struct	s_data {
 	
 }	t_data;
 
+typedef struct s_player {
+	int		posx;
+	int		posy;
+	double 	angle;
+	float	fov_rd;
+	int		rot;
+}	t_pĺayer;
 
 void	windows_builder(t_data *data);
 int		close_window(int code, t_data *data);
@@ -78,5 +101,7 @@ int		is_empty_line(char *str);
 
 int		valid_wall(char **map, t_data *data);
 
+void	init(t_data *data);
+void	init_player(t_data *data);
 
 #endif

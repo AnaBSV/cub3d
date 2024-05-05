@@ -1,5 +1,33 @@
 #include "../includes/cub3d.h"
 
+static void	(t_data *data, int i, int j, char c)
+{
+	data->map->px = i;
+	data->map->py = j;
+	data->map->planx = 0;
+	data->map->plany = 0.66;
+	if (c == 'N')
+	{
+		data->map->dirx = 0;
+		data->map->dirx = 1;
+	}
+	else if (c == 'S')
+	{
+		data->map->dirx = 0;
+		data->map->diry = -1;
+	}
+	else if (c == 'W')
+	{
+		data->map->dirx = -1;
+		data->map->diry = 0;
+	}
+	else
+	{
+		data->map->dirx = 1;
+		data->map->dirx = 0;
+	}
+}
+
 int	get_map(char *filename, t_data *data)
 {
 	int		fd;
@@ -39,7 +67,7 @@ void	check_map(char **map, t_data *data)
 
 	i = 0;
 	player = 0;
-	while (map[i])
+	while (map[i++])
 	{
 		j = 0;
 		while (map[i][j])
@@ -49,6 +77,7 @@ void	check_map(char **map, t_data *data)
 			else if (map[i][j] == 'N' || map[i][j] == 'S' || map[i][j] == 'W' || map[i][j] == 'E')
 			{
 				player++;
+				get_player_pos(data, i, j, map[i][j]);
 				j++;
 			}
 			else{
@@ -56,7 +85,6 @@ void	check_map(char **map, t_data *data)
 				exit_cub("Invalid map: unknown char\n", data);
 			}
 		}
-		i++;
 	}
 	if (player != 1)
 		exit_cub("Invalid map: Just one player is accepted\n", data);
