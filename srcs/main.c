@@ -49,7 +49,6 @@ void print_data_struct(t_data *data)
 
 void	windows_builder(t_data *data)
 {
-	data->mlx = mlx_init();
 	data->win = mlx_new_window(data->mlx, WIDTH, HEIGHT, data->name);
 	data->img = mlx_new_image(data->mlx, WIDTH, HEIGHT);
 	data->addr = mlx_get_data_addr(data->img, &data->bits_per_pixel,
@@ -99,6 +98,10 @@ int	main(int argc, char **argv)
 	check_map(data.map->map, &data);
 	print_map_struct(data.map);
 	valid_wall(data.map->map, &data);
+
+	data.mlx = mlx_init();
+	preload_resources(&data);
+
 	free_map(data.map);
 	windows_builder(&data);
 	mlx_hook(data.win, 17, 0, close_window, &data);

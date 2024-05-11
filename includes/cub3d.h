@@ -25,7 +25,8 @@
 
 # define WIDTH 1900
 # define HEIGHT 1000
-# define TEXT 4
+# define TEXWIDTH 256
+# define TEXHEIGHT 256
 
 typedef struct	s_map {
 	char		*no;
@@ -44,6 +45,9 @@ typedef struct	s_map {
 	int 		map_begin_line;
 	int			total_lines;
 	int			width;
+
+	int			buffer[HEIGHT][WIDTH];
+	int			*texture[4];
 	
 }	t_map;
 
@@ -57,16 +61,20 @@ typedef struct	s_data {
 	int			endian;
 	char		*name;
 	t_map		*map;
+
+	//Texture
+	int			width;
+	int			height;
+	int				w1;
+	int				h1;
+	int				w2;
+	int				h2;
+	int				w3;
+	int				h3;
+	int				w4;
+	int				h4;
 	
 }	t_data;
-
-
-void	windows_builder(t_data *data);
-int		close_window(int code, t_data *data);
-
-int		read_map_configs(char *filename, t_data *data);
-int		get_map(char *filename, t_data *data);
-void	check_map(char **map, t_data *data);
 
 void	free_array(char **arr);
 void	free_map(t_map *map);
@@ -77,6 +85,11 @@ void	exit_cub(char *str, t_data *data);
 int		is_empty_line(char *str);
 
 int		valid_wall(char **map, t_data *data);
+void	preload_resources(t_data *data);
 
+int		close_window(int code, t_data *data);
+int		read_map_configs(char *filename, t_data *data);
+int		get_map(char *filename, t_data *data);
+void	check_map(char **map, t_data *data);
 
 #endif

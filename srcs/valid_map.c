@@ -143,10 +143,10 @@ int valid_wall(char **map, t_data *data)
         i = 0;
         while(map_copy[i])
         {
-            printf("%s\n", map_copy[i]);
+            //printf("%s\n", map_copy[i]);
             i++;
         }
-        printf("_______________________\n");
+        //printf("_______________________\n");
         continue;
     }
    //printf("TESTE: %d\n", check_around_point(map_copy, '0'));

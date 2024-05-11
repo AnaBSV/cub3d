@@ -2,6 +2,8 @@
     "files.associations": {
         "stdio.h": "c",
         "HOOK.C": "cpp",
-        "libft.h": "c"
+        "libft.h": "c",
+        "mlx.h": "c",
+        "get_next_line.h": "c"
     }
 }

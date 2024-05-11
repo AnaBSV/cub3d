@@ -1,5 +1,20 @@
 #include "../includes/cub3d.h"
 
+void remove_texture_nl(char *str) {
+	int i;
+
+	i = 0;
+	while (str[i])
+	{
+		if (str[i] == '\n')
+		{
+			str[i] ='\0';
+			break;
+		}
+		i++;
+	}
+
+}
 
 int array_len(char **arr)
 {
@@ -139,5 +154,9 @@ int	read_map_configs(char *filename, t_data *data)
 
 	data->map->c = get_color_info(data->map->c_str, 'C', data);
 	data->map->f = get_color_info(data->map->f_str, 'F', data);
+	remove_texture_nl(data->map->no);
+	remove_texture_nl(data->map->so);
+	remove_texture_nl(data->map->ea);
+	remove_texture_nl(data->map->we);
 	return (0);
 }
