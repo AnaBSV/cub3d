@@ -33,10 +33,10 @@ void	load_image(t_data *data, int *tex, char *tex_path, int index)
     data->img = NULL;
 	data->img = \
 	mlx_xpm_file_to_image(data->mlx, tex_path, &data->width, &data->height);
-    printf("data->mlx: %p %s| tex_path: %s | data->width: %d | data->height: %d\n", data->img, data->img ? "ok":"vazio", tex_path, data->width, data->height);
+    //printf("data->mlx: %p %s| tex_path: %s | data->width: %d | data->height: %d\n", data->img, data->img ? "ok":"vazio", tex_path, data->width, data->height);
 	if (data->img == NULL)
 		exit_cub("XPM file error.\n", data);
-	data->addr = (char *)mlx_get_data_addr(data->img, \
+	data->addr = (int *)mlx_get_data_addr(data->img, \
 	&data->bits_per_pixel, &data->line_length, &data->endian);
 	load_w_h(index, data, data->width, data->height);
 	while (++i < data->height)

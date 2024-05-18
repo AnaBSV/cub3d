@@ -27,6 +27,10 @@
 # define HEIGHT 1000
 # define TEXWIDTH 256
 # define TEXHEIGHT 256
+# define X 0
+# define Y 1
+# define ROT_SPEED 0.06
+# define MOVE_SPEED 0.06
 
 typedef struct	s_map {
 	char		*no;
@@ -48,18 +52,26 @@ typedef struct	s_map {
 
 	int			buffer[HEIGHT][WIDTH];
 	int			*texture[4];
-	
+
+	//RAYCASTING
+	int map_x;
+	int map_y;
+	int	side;
+
 }	t_map;
+
 
 typedef struct	s_data {
 	void		*mlx;
 	void		*win;
 	void		*img;
-	char		*addr;
+	int			*addr;
 	int			bits_per_pixel;
 	int			line_length;
 	int			endian;
 	char		*name;
+	double		player_x;
+	double		player_y;
 	t_map		*map;
 
 	//Texture
@@ -73,12 +85,40 @@ typedef struct	s_data {
 	int				h3;
 	int				w4;
 	int				h4;
-	
+
+	//RAYCASTING
+	double	dir_x;
+	double	dir_y;
+	double	player_dir_x;
+	double	player_dir_y;
+	double	player_plane_x;
+	double	player_plane_y;
+	double	ray_dir_x;
+	double	ray_dir_y;
+	double	ray_delta_dist_x;
+	double	ray_delta_dist_y;
+	int		ray_step_x;
+	int		ray_step_y;
+	double	ray_side_dist_x;
+	double	ray_side_dist_y;
+	double	perp_wall_dist;
+	double	ray_step;
+	int		ray_line_height;
+
+	//TEXTURE
+	int		text_start;
+	int		text_end;
+	int		text_x;
+	int		text_y;
+	double	text_pos;
+	int		text_color;
+	int		text_num;
+	double	text_wall_x;
+
 }	t_data;
 
 void	free_array(char **arr);
 void	free_map(t_map *map);
-
 
 int		count_char(char *str, char c);
 void	exit_cub(char *str, t_data *data);
@@ -91,5 +131,27 @@ int		close_window(int code, t_data *data);
 int		read_map_configs(char *filename, t_data *data);
 int		get_map(char *filename, t_data *data);
 void	check_map(char **map, t_data *data);
+void	paint_vertical(t_data *data, int start_y, int end_y, int color);
+void	draw(t_data *data);
+
+void	ray(t_data *data);
+void	init_player(t_data *data, int l, int c, char **map);
+void	init_dda(t_data *data);
+void	improve_dda(t_data *data);
+void	cal_dist(t_data *data);
+void	text_wall(int i, t_data *data);
+
+int is_end_of_line(char *line, int col);
+
+void	init_ray(int i, t_data *data);
+void	move_player(t_data *data, int n, char *dir);
+void	rotate(t_data *data, int n);
+
+int	pressed_key(int key, t_data *data);
+
+
+//void	init_texture(t_data *data);
+void	map_texture(t_data *data);
+void	texture(t_data *data);
 
 #endif

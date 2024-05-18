@@ -46,6 +46,7 @@ int	*get_color_info(char *line, char c, t_data *data)
 	while (ptr && *ptr != '\0' && i < 3)
 	{
 		colors[i] = ft_atoi(ptr);
+		//printf("...guardando %d no índice %d de %c\n", colors[i], i, c);
 
 		if (colors[i] < 0 || colors[i] >= 255)
 			exit_cub("Invalid Color Info\n", data);
@@ -105,7 +106,6 @@ int	read_map_configs(char *filename, t_data *data)
 	char	*line;
 	int		total_configs;
 	int		i;
-
 	fd = open(filename, O_RDONLY);
 	if (fd == -1)
 	{

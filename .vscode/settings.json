@@ -4,6 +4,7 @@
         "HOOK.C": "cpp",
         "libft.h": "c",
         "mlx.h": "c",
-        "get_next_line.h": "c"
+        "get_next_line.h": "c",
+        "cub3d.h": "c"
     }
 }

@@ -1,4 +1,23 @@
 #include "../includes/cub3d.h"
+static char *ft_strdup_map(char *str)
+{
+	int len = 0;
+	int i = 0;
+
+	while(is_end_of_line(str, len) == 1)
+		len++;
+
+	char *copy = malloc(sizeof(char) * (len + 1));
+
+	while (i <= len)
+	{
+		copy[i] = str[i];
+		i++;
+	}
+	copy[i] = '\0';
+
+	return (copy);
+}
 
 int	get_map(char *filename, t_data *data)
 {
@@ -22,8 +41,8 @@ int	get_map(char *filename, t_data *data)
             free(line);
             continue;
         }
-        data->map->map[map_index] = ft_strdup(line);
-        free(line);
+        data->map->map[map_index] = ft_strdup_map(line);
+		free(line);
         map_index++;
         i++;
 	}
@@ -35,10 +54,12 @@ void	check_map(char **map, t_data *data)
 {
 	int	i;
 	int	j;
+
 	int player;
 
 	i = 0;
 	player = 0;
+	printf("2\n");
 	while (map[i])
 	{
 		j = 0;
@@ -48,6 +69,10 @@ void	check_map(char **map, t_data *data)
 				j++;
 			else if (map[i][j] == 'N' || map[i][j] == 'S' || map[i][j] == 'W' || map[i][j] == 'E')
 			{
+				printf("x: %d | y: %d\n", i, j);
+				data->player_x = (double)j + 0.5;
+				data->player_y = (double)i + 0.5;
+				init_player(data, i, j, map);
 				player++;
 				j++;
 			}
