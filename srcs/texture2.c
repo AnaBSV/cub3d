@@ -1,6 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   texture2.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: vlopes <vlopes@student.42.rio>             +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/05/18 20:27:33 by vlopes            #+#    #+#             */
+/*   Updated: 2024/05/18 20:37:10 by vlopes           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../includes/cub3d.h"
 
-static void get_color_texture(t_data *data)
+static void	get_color_texture(t_data *data)
 {
 	if (data->map->side == Y && data->ray_dir_y < 0)
 	{

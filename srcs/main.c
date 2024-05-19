@@ -3,21 +3,21 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ade-sous <ade-sous@student.42.rio>         +#+  +:+       +#+        */
+/*   By: vlopes <vlopes@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/06 15:34:45 by ade-sous          #+#    #+#             */
-/*   Updated: 2024/05/04 19:56:03 by ade-sous         ###   ########.fr       */
+/*   Updated: 2024/05/18 20:42:46 by vlopes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
 
-void print_map_struct(t_map *map)
+/*void print_map_struct(t_map *map)
 {
 	int	i;
 
 	i = 0;
-	/*printf("Begin Line: %d\n", map->map_begin_line);
+	printf("Begin Line: %d\n", map->map_begin_line);
 	printf("Total Lines: %d\n", map->total_lines);
 	printf("Width: %d\n", map->width);
 	printf("\n");
@@ -33,7 +33,7 @@ void print_map_struct(t_map *map)
 	
 	printf("F: %d|%d|%d\n", map->f[0], map->f[1], map->f[2]);
 	printf("C: %d|%d|%d\n", map->c[0], map->c[1], map->c[2]);
-	*/
+	
 	printf("\n");
 
 	while (map->map[i])
@@ -41,11 +41,10 @@ void print_map_struct(t_map *map)
 		printf("%s\n", map->map[i]);
 		i++;
 	}
-}
+}*/
 
 void	init_player(t_data *data, int l, int c, char **map)
 {
-	//printf("5\n");
 	if (map[l][c] == 'N')
 	{
 		data->player_dir_y = -1;
@@ -69,11 +68,6 @@ void	init_player(t_data *data, int l, int c, char **map)
 	data->map->map[l][c] = '0';
 }
 
-void print_data_struct(t_data *data)
-{
-	(void)data;
-}
-
 void	windows_builder(t_data *data)
 {
 	data->win = mlx_new_window(data->mlx, WIDTH, HEIGHT, data->name);
@@ -81,8 +75,6 @@ void	windows_builder(t_data *data)
 	data->addr = (int *)mlx_get_data_addr(data->img, &data->bits_per_pixel,
 			&data->line_length, &data->endian);
 }
-
-
 
 void	init(t_data *data)
 {
@@ -109,7 +101,6 @@ void	init(t_data *data)
 
 static int	game(t_data *data)
 {
-	//printf("%d %d %d\n", data->map->f[0], data->map->f[1], data->map->f[2]);
 	int color = ((data->map->c[0] << 16) + (data->map->c[1] << 8) + data->map->c[2]);
 	paint_vertical(data, 0, HEIGHT / 2, color);
 	color = ((data->map->f[0] << 16) + (data->map->f[1] << 8) + data->map->f[2]);
@@ -143,10 +134,9 @@ int	main(int argc, char **argv)
 	valid_wall(data.map->map, &data);
 	data.mlx = mlx_init();
 	preload_resources(&data);
-	print_map_struct(data.map);
+	//print_map_struct(data.map);
 	windows_builder(&data);
-	mlx_hook(data.win, 17, 0, close_window, &data);
-	//mlx_hook(data.win, 17, (1L << 17), &pressed_translate, &data);
+	mlx_hook(data.win, 17, 1l<<17, close_window, &data);
 	mlx_hook(data.win, 2, (1L << 0), &pressed_key, &data);
 	mlx_loop_hook(data.mlx, &game, &data);
 	mlx_loop(data.mlx);

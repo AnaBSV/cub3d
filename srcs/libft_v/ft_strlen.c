@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ade-sous <ade-sous@student.42.rio>         +#+  +:+       +#+        */
+/*   By: vlopes <vlopes@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/20 21:35:57 by ade-sous          #+#    #+#             */
-/*   Updated: 2024/04/20 21:36:20 by ade-sous         ###   ########.fr       */
+/*   Updated: 2024/05/18 20:53:38 by vlopes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 
 int	ft_strlen(const char *s)
 {
-	int i;
+	int	i;
 
-    i = 0;
+	i = 0;
 	while (s[i])
 	{
 		i++;

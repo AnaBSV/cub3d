@@ -1,6 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   read_map.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: vlopes <vlopes@student.42.rio>             +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/04/18 14:59:37 by ade-sous          #+#    #+#             */
+/*   Updated: 2024/05/18 20:40:07 by vlopes           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../includes/cub3d.h"
 
-void remove_texture_nl(char *str) {
+void	remove_texture_nl(char *str) {
 	int i;
 
 	i = 0;
@@ -16,10 +28,11 @@ void remove_texture_nl(char *str) {
 
 }
 
-int array_len(char **arr)
+int	array_len(char **arr)
 {
-	int i = 0;
-
+	int	i;
+	
+	i = 0;
 	while (arr[i])
 		i++;
 	return (i);
@@ -40,14 +53,12 @@ int	*get_color_info(char *line, char c, t_data *data)
 	ptr++;
 
 	while (ptr && *ptr == ' ')
-    	ptr++;
+		ptr++;
 	
 	i = 0;
 	while (ptr && *ptr != '\0' && i < 3)
 	{
 		colors[i] = ft_atoi(ptr);
-		//printf("...guardando %d no índice %d de %c\n", colors[i], i, c);
-
 		if (colors[i] < 0 || colors[i] >= 255)
 			exit_cub("Invalid Color Info\n", data);
 		
@@ -56,7 +67,7 @@ int	*get_color_info(char *line, char c, t_data *data)
 			break;
 		ptr++;
 		while (ptr && *ptr == ' ')
-    		ptr++;
+			ptr++;
 		
 		i++;
 	}
@@ -64,9 +75,9 @@ int	*get_color_info(char *line, char c, t_data *data)
 }
 
 
-int check_config_line(char *line, t_data *data, int total_configs)
+int	check_config_line(char *line, t_data *data, int total_configs)
 {
-  char **infos;
+	char	**infos;
 
 	infos = ft_split(line, ' ');
 	if (!infos || !infos[0] || total_configs == 6)
@@ -74,8 +85,6 @@ int check_config_line(char *line, t_data *data, int total_configs)
 		free_array(infos);
 		return (1);
 	}
-	//printf("infos[0]: %s\n", infos[0]);
-	
 	if (ft_strcmp(infos[0], "NO\0") == 0)
 		data->map->no = ft_strdup(infos[1]);
 	else if (ft_strcmp(infos[0], "SO\0") == 0)
@@ -85,16 +94,14 @@ int check_config_line(char *line, t_data *data, int total_configs)
 	else if (ft_strcmp(infos[0], "EA\0") == 0)
 		data->map->ea = ft_strdup(infos[1]);
 	else if (ft_strcmp(infos[0], "F\0") == 0)
-		data->map->f_str = ft_strdup(line);//get_color_info(line, 'F', data, infos);
+		data->map->f_str = ft_strdup(line);
 	else if (ft_strcmp(infos[0], "C\0") == 0)
-		data->map->c_str = ft_strdup(line);//get_color_info(line, 'C', data, infos);
+		data->map->c_str = ft_strdup(line);
 	else
 	{
 		free_array(infos);
 		return (1);
 	}
-
-
 	free_array(infos);
 	return(0);
 }
@@ -106,12 +113,10 @@ int	read_map_configs(char *filename, t_data *data)
 	char	*line;
 	int		total_configs;
 	int		i;
+	
 	fd = open(filename, O_RDONLY);
 	if (fd == -1)
-	{
 		exit_cub("Failed to open and read file.\n", data);
-	}
-
 	total_configs = 0;
 	i = 0;
 	while (1)
@@ -135,7 +140,6 @@ int	read_map_configs(char *filename, t_data *data)
 				data->map->width = ft_strlen(line);
 			data->map->total_lines++;
 		}
-
 		is_config_line = check_config_line(line, data, total_configs);
 		if (total_configs <= 5 && !is_config_line)
 			total_configs++;
@@ -147,7 +151,6 @@ int	read_map_configs(char *filename, t_data *data)
 		free(line);
 		i++;
 	}
-
 	close(fd);
 	if (total_configs != 6)
 		exit_cub("Erro nas Configurações B\n", data);

@@ -36,16 +36,16 @@ void	draw(t_data *data)
 
 void	ray(t_data *data)
 {
-    int i;
+	int	i;
 
-    i = 0;
-    while(i < WIDTH)
-    {
+	i = 0;
+	while(i < WIDTH)
+	{
 		init_ray(i, data);
 		init_dda(data);
 		improve_dda(data);
 		cal_dist(data);
 		text_wall(i, data);
 		i++;
-    }
+	}
  }

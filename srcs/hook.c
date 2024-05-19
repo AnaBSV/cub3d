@@ -12,9 +12,8 @@
 
 #include "../includes/cub3d.h"
 
-int	close_window(int code, t_data *data)
+int	close_window(t_data *data)
 {
-	(void)code;
 	exit_cub("Programa encerrado!\n", data);
 	return(0);
 }
