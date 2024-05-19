@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ade-sous <ade-sous@student.42.rio>         +#+  +:+       +#+        */
+/*   By: vlopes <vlopes@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/06 15:34:42 by ade-sous          #+#    #+#             */
-/*   Updated: 2024/05/04 19:31:46 by ade-sous         ###   ########.fr       */
+/*   Updated: 2024/05/18 20:57:46 by vlopes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,9 +54,9 @@ typedef struct	s_map {
 	int			*texture[4];
 
 	//RAYCASTING
-	int map_x;
-	int map_y;
-	int	side;
+	int 		map_x;
+	int			map_y;
+	int			side;
 
 }	t_map;
 
@@ -87,33 +87,33 @@ typedef struct	s_data {
 	int				h4;
 
 	//RAYCASTING
-	double	dir_x;
-	double	dir_y;
-	double	player_dir_x;
-	double	player_dir_y;
-	double	player_plane_x;
-	double	player_plane_y;
-	double	ray_dir_x;
-	double	ray_dir_y;
-	double	ray_delta_dist_x;
-	double	ray_delta_dist_y;
-	int		ray_step_x;
-	int		ray_step_y;
-	double	ray_side_dist_x;
-	double	ray_side_dist_y;
-	double	perp_wall_dist;
-	double	ray_step;
-	int		ray_line_height;
+	double		dir_x;
+	double		dir_y;
+	double		player_dir_x;
+	double		player_dir_y;
+	double		player_plane_x;
+	double		player_plane_y;
+	double		ray_dir_x;
+	double		ray_dir_y;
+	double		ray_delta_dist_x;
+	double		ray_delta_dist_y;
+	int			ray_step_x;
+	int			ray_step_y;
+	double		ray_side_dist_x;
+	double		ray_side_dist_y;
+	double		perp_wall_dist;
+	double		ray_step;
+	int			ray_line_height;
 
 	//TEXTURE
-	int		text_start;
-	int		text_end;
-	int		text_x;
-	int		text_y;
-	double	text_pos;
-	int		text_color;
-	int		text_num;
-	double	text_wall_x;
+	int			text_start;
+	int			text_end;
+	int			text_x;
+	int			text_y;
+	double		text_pos;
+	int			text_color;
+	int			text_num;
+	double		text_wall_x;
 
 }	t_data;
 
@@ -127,7 +127,7 @@ int		is_empty_line(char *str);
 int		valid_wall(char **map, t_data *data);
 void	preload_resources(t_data *data);
 
-int		close_window(int code, t_data *data);
+int		close_window(t_data *data);
 int		read_map_configs(char *filename, t_data *data);
 int		get_map(char *filename, t_data *data);
 void	check_map(char **map, t_data *data);
@@ -141,14 +141,13 @@ void	improve_dda(t_data *data);
 void	cal_dist(t_data *data);
 void	text_wall(int i, t_data *data);
 
-int is_end_of_line(char *line, int col);
+int		is_end_of_line(char *line, int col);
 
 void	init_ray(int i, t_data *data);
 void	move_player(t_data *data, int n, char *dir);
 void	rotate(t_data *data, int n);
 
-int	pressed_key(int key, t_data *data);
-
+int		pressed_key(int key, t_data *data);
 
 //void	init_texture(t_data *data);
 void	map_texture(t_data *data);
