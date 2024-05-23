@@ -6,7 +6,7 @@
 /*   By: vlopes <vlopes@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/18 20:27:22 by vlopes            #+#    #+#             */
-/*   Updated: 2024/05/18 21:10:11 by vlopes           ###   ########.fr       */
+/*   Updated: 2024/05/23 16:17:04 by vlopes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,9 +88,9 @@ void	preload_resources(t_data *data)
 		if (y < 4)
 		{
 			data->map->texture[y] = (int *)malloc(sizeof(int)
-				* TEXWIDTH * TEXHEIGHT);
+					* TEXWIDTH * TEXHEIGHT);
 			if (!data->map->texture[y])
-				exit_cub("Failed to allocate memory for texture address\n", data);
+				exit_cub ("Failed to allocate memory\n", data);
 		}
 		if (y < 4 && !data->map->texture[y])
 			exit_cub("Texture missing or failed to load.\n", data);

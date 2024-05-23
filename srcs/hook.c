@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   hook.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ade-sous <ade-sous@student.42.rio>         +#+  +:+       +#+        */
+/*   By: vlopes <vlopes@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/06 15:34:39 by ade-sous          #+#    #+#             */
-/*   Updated: 2024/04/06 15:36:00 by ade-sous         ###   ########.fr       */
+/*   Updated: 2024/05/23 16:10:33 by vlopes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 int	close_window(t_data *data)
 {
 	exit_cub("Programa encerrado!\n", data);
-	return(0);
+	return (0);
 }
 
 int	pressed_key(int key, t_data *data)

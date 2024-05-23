@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   draw.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: vlopes <vlopes@student.42.rio>             +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/05/23 15:53:19 by vlopes            #+#    #+#             */
+/*   Updated: 2024/05/23 16:09:13 by vlopes           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../includes/cub3d.h"
 
 void	paint_vertical(t_data *data, int start_y, int end_y, int color)
@@ -39,7 +51,7 @@ void	ray(t_data *data)
 	int	i;
 
 	i = 0;
-	while(i < WIDTH)
+	while (i < WIDTH)
 	{
 		init_ray(i, data);
 		init_dda(data);
@@ -48,4 +60,4 @@ void	ray(t_data *data)
 		text_wall(i, data);
 		i++;
 	}
- }
+}

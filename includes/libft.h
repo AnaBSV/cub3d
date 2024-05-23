@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   libft.h                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: vlopes <vlopes@student.42.rio>             +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/05/23 17:23:38 by vlopes            #+#    #+#             */
+/*   Updated: 2024/05/23 17:24:50 by vlopes           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef LIBFT_H
 # define LIBFT_H
 
@@ -24,10 +36,9 @@ int		ft_isprint(int c);
 int		ft_isalnum(int c);
 int		ft_atoi(const char *str);
 void	*ft_realloc(void *ptr, size_t size);
-//int		ft_isspace(char *cmd);
 int		ft_stristr(const char *haystack, const char *needle, size_t len);
 char	*ft_itoa(int n);
-int	    ft_isdigit(int c);
-int     ft_strlen(const char *s);
+int		ft_isdigit(int c);
+int		ft_strlen(const char *s);
 
 #endif
